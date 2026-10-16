@@ -1,0 +1,34 @@
+# Ambientes virtuais
+.venv/
+venv/
+
+# Cache e arquivos temporários do Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Configurações e segredos locais
+.env
+.env.*
+!.env.example
+
+# Músicas usadas localmente nos testes
+audios/*
+!audios/.gitkeep
+
+# Modelos de IA baixados
+models/*
+!models/README.md
+
+# Resultados gerados: gráficos, áudios e arquivos temporários
+outputs/
+output/
+
+# Logs
+*.log
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
