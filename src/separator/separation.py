@@ -42,4 +42,9 @@ def separate_audio(
 
     separator.load_model(model_filename=model_filename)
 
-    return separator.separate(str(audio_path))
+    output_files = separator.separate(str(audio_path))
+
+    return [
+        str(output_dir / filename)
+        for filename in output_files
+    ]

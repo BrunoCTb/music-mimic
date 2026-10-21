@@ -13,6 +13,28 @@ def show_menu() -> str:
     return input("\nEscolha uma opção: ").strip()
 
 
+def display_instruments(instruments: list[dict]) -> None:
+    print("\n=== INSTRUMENTOS DETECTADOS ===")
+
+    present = [
+        item for item in instruments
+        if item["present"]
+    ]
+
+    if not present:
+        print("Nenhum instrumento foi identificado com confiança.")
+        return
+
+    for item in present:
+        print(f"- {item['instrument']}")
+
+    print("\nOutras faixas não atingiram o limite inicial:")
+    for item in instruments:
+        if not item["present"]:
+            print(f"- {item['instrument']}")
+
+
+
 def request_audio_path() -> Path | None:
     raw_path = input(
         "\nInforme o caminho do arquivo de música "
@@ -63,14 +85,18 @@ def start_singleplayer() -> None:
 
     print("\nAnalisando música... Isso pode levar algum tempo.")
 
+    
     try:
-        result = prepare_singleplayer(audio_path)
+        result, instruments = prepare_singleplayer(audio_path)
     except Exception as exc:
-        print(f"\nNão foi possível analisar a música: {exc}")
+        print(f"\nNão foi possível preparar a música: {exc}")
         return
 
     display_analysis(result)
-    print("\nPreparação concluída. O jogo poderá continuar em uma próxima etapa.")
+    display_instruments(instruments)
+
+    print("\nPreparação concluída.")
+
 
 
 def main() -> None:
