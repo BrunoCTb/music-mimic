@@ -1,8 +1,14 @@
-
 from pathlib import Path
 
 from src.config import AUDIO_DIR
 from src.game.session import prepare_singleplayer
+
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(levelname)s - %(name)s - %(message)s",
+)
 
 
 def show_menu() -> str:
